@@ -1,0 +1,16 @@
+.sideBar-nav ul li {
+  list-style: none;
+  line-height: 2.5 rem;
+}
+
+.sideBar-nav ul li i {
+  margin-right: 1.3rem;
+}
+
+.sideBar-nav {
+  color: aliceblue;
+  background-color: black;
+  width: 200px;
+  height: 100vh;
+  padding-top: 60px;
+}

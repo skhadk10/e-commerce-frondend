@@ -1,0 +1,13 @@
+.sidebarandlist {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.main {
+  height: 85vh;
+}
+.footer {
+  height: 20px;
+  background-color: black;
+}
