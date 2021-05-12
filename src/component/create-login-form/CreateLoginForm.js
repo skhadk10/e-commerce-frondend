@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Alert, Button, Col, Form, Row, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import "./loginForm.style.css";
-import { sendlogin } from "../../login/loginAction.js";
+import "./CreateloginForm.style.css";
+// import { sendlogin } from "../../login/loginAction";
 const initialState = {
   email: "rickeykhd@gmail.com",
   password: "1236",
@@ -13,7 +13,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const { isLoading, loginResponse } = useSelector((state) => state.Login);
-  const [login, setLogin] = useState(initialState);
+  const [createlogin, setCreateLogin] = useState(initialState);
 
   // const token = sessionStorage.getItem("accessJWT");
   // useEffect(() => {
@@ -22,16 +22,16 @@ const LoginForm = () => {
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     console.log({ name, value });
-    setLogin({ ...login, [name]: value });
+    setCreateLogin({ ...createlogin, [name]: value });
   };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
-    if (!login.email || !login.password) {
+    if (!createlogin.email || !createlogin.password) {
       alert("plz fill up all the input field");
     }
-    dispatch(sendlogin(login));
+    // dispatch(sendlogin(createlogin));
   };
   return (
     <div className="loginpage" onSubmit={handleOnSubmit}>
@@ -46,11 +46,33 @@ const LoginForm = () => {
       )}
       <Form className="formdisplay">
         <Form.Group>
+          <Form.Label>First Name</Form.Label>
+          <Form.Control
+            name="fName"
+            type="text"
+            value={createlogin.fName}
+            placeholder="Enter first Name"
+            onChange={handleOnChange}
+          />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>Last Name</Form.Label>
+          <Form.Control
+            name="lName"
+            type="text"
+            placeholder="Enter Last Name"
+            value={createlogin.lName}
+            onChange={handleOnChange}
+          />
+        </Form.Group>
+
+        <Form.Group>
           <Form.Label>Email address</Form.Label>
           <Form.Control
             name="email"
             type="email"
-            value={login.email}
+            value={createlogin.email}
             placeholder="Enter email"
             onChange={handleOnChange}
           />
@@ -62,7 +84,7 @@ const LoginForm = () => {
             name="password"
             type="password"
             placeholder="Password"
-            value={login.password}
+            value={createlogin.password}
             onChange={handleOnChange}
           />
         </Form.Group>
@@ -79,7 +101,7 @@ const LoginForm = () => {
           </Col>
           <Col md={4}>
             <Button variant="primary" type="submit">
-              create user
+              login
             </Button>
           </Col>
         </Row>

@@ -9,7 +9,7 @@ const loginSlice = createSlice({
   initialState,
   reducers: {
     requestPending: (state) => {
-      state.isloading = false;
+      state.isloading = true;
     },
     loginSuccess: (state, { payload }) => {
       state.isLoading = false;

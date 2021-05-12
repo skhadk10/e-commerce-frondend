@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import DafaultLayout from "./component/layout/DafaultLayout";
 
 import "./App.css";
-import Login from "./login/Login";
+import Login from "./page/login/Login";
 
 function App() {
   return (
