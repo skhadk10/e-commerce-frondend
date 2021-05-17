@@ -3,7 +3,9 @@ import { Alert, Button, Col, Form, Row, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./loginForm.style.css";
-import { sendlogin } from "../../login/loginAction.js";
+import {sendLogin} from '../../page/login/loginAction.js'
+
+
 const initialState = {
   email: "rickeykhd@gmail.com",
   password: "1236",
@@ -31,7 +33,7 @@ const LoginForm = () => {
     if (!login.email || !login.password) {
       alert("plz fill up all the input field");
     }
-    dispatch(sendlogin(login));
+    dispatch( sendLogin(login));
   };
   return (
     <div className="loginpage" onSubmit={handleOnSubmit}>
@@ -67,21 +69,17 @@ const LoginForm = () => {
           />
         </Form.Group>
         <Row>
-          <Col md={3}>
+          <Col md={6}>
             <Button variant="primary" type="submit">
               Submit
             </Button>
           </Col>
-          <Col md={5}>
-            <a className="text center ml-6 " href="">
+          <Col md={6}>
+            <a className="text center ml-6 " href=" ">
               Forget password?
             </a>
           </Col>
-          <Col md={4}>
-            <Button variant="primary" type="submit">
-              create user
-            </Button>
-          </Col>
+         
         </Row>
       </Form>
     </div>

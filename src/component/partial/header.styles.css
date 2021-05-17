@@ -1,0 +1,12 @@
+
+.rightnavbar ul {
+    display: flex;
+    list-style: none;
+    
+  }
+  .rightnavbar ul li {
+      margin-top: 5px;
+    margin-right: 1.3rem;
+
+  }
+  

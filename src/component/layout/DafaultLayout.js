@@ -4,16 +4,12 @@ import Footer from "../partial/Footer";
 import Header from "../partial/Header";
 import SideBarNav from "../side-bar/SideBarNav";
 import "./DefaultLayout.css";
-const DafaultLayout = ({ childern }) => {
+const DafaultLayout = ({ children }) => {
   return (
     <div>
+
       <Header />
-      <div className="sidebarandlist">
-        <div>
-          <SideBarNav />
-        </div>
-        <div>{childern}</div>
-      </div>
+        <div>{children}</div>
       <Footer />
     </div>
   );

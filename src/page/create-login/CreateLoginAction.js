@@ -1,16 +1,17 @@
+import { CreateloginAPI } from "../../Apis/CreateloginApis.js";
 import {
   requestPending,
   loginSuccess,
   requestFail,
-} from "./loginSlice.js";
+} from "./CreateLoginSlice.js";
 
-import { ClientloginAPI } from "../../Apis/loginApis.js";
 
-export const sendLogin = (FormData) => async (dispatch) => {
+
+export const sendCreatelogin = (FormData) => async (dispatch) => {
   try {
     dispatch(requestPending());
-    const result = await ClientloginAPI(FormData);
-
+    const result = await CreateloginAPI(FormData);
+    console.log(result);
     // const { accessJWT, refreshJWT } = result;
     // accessJWT && sessionStorage.setItem("accessJWT", accessJWT);
     // refreshJWT && localStorage.setItem("ourEcommerceRJWT", refreshJWT);

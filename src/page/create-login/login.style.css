@@ -1,0 +1,9 @@
+.login-page {
+  height: 100vh;
+
+  background: url(../../asset/login.png) center center no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

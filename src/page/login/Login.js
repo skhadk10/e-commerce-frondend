@@ -1,12 +1,15 @@
 import React from "react";
-import LoginForm from "../../component/create-login-form/CreateLoginForm.js";
+import LoginForm from "../../component/login-form/LoginForm";
+import DafaultLayout from '../../component/layout/DafaultLayout'
 
 import "./login.style.css";
 const Login = () => {
   return (
-    <div className="login-page">
-      <LoginForm />
-    </div>
+    <DafaultLayout>
+
+    <div  className="login-page">  <LoginForm /></div>
+   
+  </DafaultLayout>
   );
 };
 

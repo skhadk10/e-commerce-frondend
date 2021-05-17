@@ -3,16 +3,19 @@ import { Alert, Button, Col, Form, Row, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./CreateloginForm.style.css";
-// import { sendlogin } from "../../login/loginAction";
+import {sendCreatelogin} from '../../page/create-login/CreateLoginAction.js'
+
 const initialState = {
+  fName:"",
+  lName:"",
   email: "rickeykhd@gmail.com",
   password: "1236",
 };
-const LoginForm = () => {
+const CreateLoginForm = () => {
   // const history = useHistory();
   const dispatch = useDispatch();
 
-  const { isLoading, loginResponse } = useSelector((state) => state.Login);
+  const { isLoading, loginResponse } = useSelector((state) => state.newUser);
   const [createlogin, setCreateLogin] = useState(initialState);
 
   // const token = sessionStorage.getItem("accessJWT");
@@ -31,7 +34,9 @@ const LoginForm = () => {
     if (!createlogin.email || !createlogin.password) {
       alert("plz fill up all the input field");
     }
-    // dispatch(sendlogin(createlogin));
+    console.log(createlogin)
+    dispatch(sendCreatelogin(createlogin));
+    console.log(createlogin)
   };
   return (
     <div className="loginpage" onSubmit={handleOnSubmit}>
@@ -45,7 +50,7 @@ const LoginForm = () => {
         </Alert>
       )}
       <Form className="formdisplay">
-        <Form.Group>
+      <Form.Group>
           <Form.Label>First Name</Form.Label>
           <Form.Control
             name="fName"
@@ -88,26 +93,14 @@ const LoginForm = () => {
             onChange={handleOnChange}
           />
         </Form.Group>
-        <Row>
-          <Col md={3}>
+      
             <Button variant="primary" type="submit">
               Submit
             </Button>
-          </Col>
-          <Col md={5}>
-            <a className="text center ml-6 " href="">
-              Forget password?
-            </a>
-          </Col>
-          <Col md={4}>
-            <Button variant="primary" type="submit">
-              login
-            </Button>
-          </Col>
-        </Row>
+        
       </Form>
     </div>
   );
 };
 
-export default LoginForm;
+export default CreateLoginForm;

@@ -1,7 +1,6 @@
 .sidebarandlist {
   display: flex;
-  justify-content: left;
-  align-items: center;
+
 }
 
 .main {
@@ -10,4 +9,8 @@
 .footer {
   height: 20px;
   background-color: black;
+}
+
+.childrenprops{
+  max-width: 800px;
 }
