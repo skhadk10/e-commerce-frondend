@@ -1,12 +1,14 @@
 import axios from "axios";
 
-const rooturl = "https://localhost:8000/api/v1/";
+const rooturl = "http://localhost:8000/api/v1/";
 const prodFetch = rooturl + "productdisplay";
-
-export const fetchProduct = async (_id) => {
-  return new Promise((resolve, reject) => {
+// geting product from backend   and display
+export const fetchAProductApis = () => {
+  return new Promise(async (resolve, reject) => {
     try {
-      const { data } = await axios.get(prodFetch + "/" + _id);
+      const { data } = await axios.get(prodFetch);
+      // console.log("from API", data);
+
       resolve(data);
     } catch (error) {
       reject(error);

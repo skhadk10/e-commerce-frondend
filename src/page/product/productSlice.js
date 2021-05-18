@@ -1,4 +1,4 @@
-import createSlice from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLoading: false,
   proDisplayList: [],
@@ -8,16 +8,18 @@ const initialState = {
 const productSlice = createSlice({
   name: "prodDisplay",
   initialState,
-  reducer: {
+  reducers: {
     requestPending: (state) => {
       state.isLoading = true;
     },
     productfetchSuccess: (state, { payload }) => {
-      (state.isLoading = false), (state.proDisplayList = payload || {});
+      state.isLoading = false;
+      state.proDisplayList = payload.product || [];
     },
     requestFail: (state, { payload }) => {
       state.isLoading = false;
-      (state.message = payload.message), (state.status = payload.status);
+      state.status = payload.status;
+      state.message = payload.message;
     },
   },
 });

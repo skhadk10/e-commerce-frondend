@@ -1,11 +1,11 @@
 import logo from "./logo.svg";
 
-import DafaultLayout from "./component/layout/DafaultLayout";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./page/login/Login";
 import CreateLogin from "./page/create-login/CreateLogin.js";
 import PrivateRoute from "./component/layout/private-route/PrivateRoute";
+import ProductDisplay from "./page/product/ProductDisplay";
 
 function App() {
   return (
@@ -13,12 +13,12 @@ function App() {
       <Router>
         <Switch>
           <PrivateRoute path="/Dashboard">
-                <CreateLogin/>
+            <CreateLogin />
           </PrivateRoute>
           <Route exact path="/Products">
-        
+            <ProductDisplay />
           </Route>
-          <Route exact path="/Createlogin">
+          <Route exact path="/CreateLogin">
             <CreateLogin />
           </Route>
           <Route exact path="/">
@@ -26,8 +26,6 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    
-
     </div>
   );
 }
