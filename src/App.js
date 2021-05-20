@@ -6,6 +6,7 @@ import Login from "./page/login/Login";
 import CreateLogin from "./page/create-login/CreateLogin.js";
 import PrivateRoute from "./component/layout/private-route/PrivateRoute";
 import ProductDisplay from "./page/product/ProductDisplay";
+import ViewProductListTable from "./component/viewproductListTable/viewProductListTable";
 
 function App() {
   return (
@@ -15,12 +16,19 @@ function App() {
           <PrivateRoute path="/Dashboard">
             <CreateLogin />
           </PrivateRoute>
+
           <Route exact path="/Products">
             <ProductDisplay />
           </Route>
+          <Route exact path="/Products/:slug">
+            <ViewProductListTable />
+          </Route>
+
           <Route exact path="/CreateLogin">
             <CreateLogin />
           </Route>
+          <Route exact path="/cart"></Route>
+
           <Route exact path="/">
             <Login />
           </Route>

@@ -1,20 +1,23 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Alert, Button, Card, Spinner } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { fetchProduct } from "../../page/product/productAction";
+import { Link, useParams } from "react-router-dom";
+import { fetchProductBySLug } from "../../page/selectedviewproduct/ViewproductAction.js";
 
-const ProductListTable = () => {
-  const { isLoading, status, message, proDisplayList } = useSelector(
-    (state) => state.displayProduct
+const ViewProductListTable = () => {
+  const { isLoading, status, message, selectedproDisplayList } = useSelector(
+    (state) => state.selecteddisplayProduct
   );
-  console.log(proDisplayList);
+  console.log(selectedproDisplayList);
 
   const dispatch = useDispatch();
 
+  let { slug } = useParams();
+  console.log("form slog", slug);
+
   useEffect(() => {
-    dispatch(fetchProduct());
-  }, [dispatch]);
+    dispatch(fetchProductBySLug(slug));
+  }, [dispatch, slug]);
 
   return (
     <div>
@@ -25,12 +28,13 @@ const ProductListTable = () => {
           {message}
         </Alert>
       )}
-      {proDisplayList?.map((itm, i) => {
+      {selectedproDisplayList?.map((itm, i) => {
         return (
           <Card style={{ width: "18rem" }} key={i}>
-            <Link to={`/Products/${itm.slug}`}>
+            <Link>
               <Card.Img variant="top" src={itm.images[0]} />
             </Link>
+
             <Card.Body>
               <Card.Title>
                 {itm.status ? (
@@ -50,4 +54,4 @@ const ProductListTable = () => {
     </div>
   );
 };
-export default ProductListTable;
+export default ViewProductListTable;

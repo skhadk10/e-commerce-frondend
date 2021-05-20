@@ -1,22 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLoading: false,
-  proDisplayList: [],
+  selectedproDisplayList: [],
   status: "",
   message: "",
 };
-const productSlice = createSlice({
+const viewproductSlice = createSlice({
   name: "prodDisplay",
   initialState,
   reducers: {
     requestPending: (state) => {
       state.isLoading = true;
     },
-    productfetchSuccess: (state, { payload }) => {
-      state.isLoading = false;
-      state.proDisplayList = payload.product || [];
-    },
 
+    productfetchBySlug: (state, { payload }) => {
+      state.isLoading = false;
+      state.selectedproDisplayList = payload.product || [];
+    },
     requestFail: (state, { payload }) => {
       state.isLoading = false;
       state.status = payload.status;
@@ -24,10 +24,10 @@ const productSlice = createSlice({
     },
   },
 });
-const { reducer, actions } = productSlice;
+const { reducer, actions } = viewproductSlice;
 export const {
   requestPending,
-  productfetchSuccess,
+
   productfetchBySlug,
   requestFail,
 } = actions;

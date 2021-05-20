@@ -27,6 +27,11 @@ const Header = () => {
               <Link to="/Products">product </Link>
             </li>
             <li>
+              <Link to="/cart">
+                <i class="fas fa-shopping-cart"></i>{" "}
+              </Link>
+            </li>
+            <li>
               <Link to="/">
                 <i className="fas fa-user primary"></i>
               </Link>
