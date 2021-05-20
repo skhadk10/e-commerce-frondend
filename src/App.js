@@ -7,6 +7,7 @@ import CreateLogin from "./page/create-login/CreateLogin.js";
 import PrivateRoute from "./component/layout/private-route/PrivateRoute";
 import ProductDisplay from "./page/product/ProductDisplay";
 import ViewProductListTable from "./component/viewproductListTable/viewProductListTable";
+import CartviewproductDisplay from "./page/Cartviewproduct/CartviewproductDisplay";
 
 function App() {
   return (
@@ -27,7 +28,9 @@ function App() {
           <Route exact path="/CreateLogin">
             <CreateLogin />
           </Route>
-          <Route exact path="/cart"></Route>
+          <Route exact path="/cart">
+            <CartviewproductDisplay />
+          </Route>
 
           <Route exact path="/">
             <Login />
