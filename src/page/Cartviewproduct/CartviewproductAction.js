@@ -4,11 +4,17 @@ import {
   requestFail,
 } from "./CartviewproductSlice.js";
 
-export const fetchProductToCart = (item) => (dispatch) => {
+export const addtoCart = (itemlist, qtyselected) => (dispatch) => {
   try {
+    const newItem = {
+      ...itemlist,
+      qtyselected,
+    };
     dispatch(requestPending());
 
-    dispatch(addToCartSuccess(item));
+    dispatch(addToCartSuccess(newItem));
+    console.log("from action of cart", addToCartSuccess(newItem));
+    newItem && localStorage.setItem("item", JSON.stringify(newItem));
   } catch (error) {
     const err = {
       status: "error",

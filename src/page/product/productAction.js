@@ -1,11 +1,7 @@
-import {
-  fetchAProductApis,
-  fetchAProductApisBySlug,
-} from "../../Apis/productApis.js";
+import { fetchAProductApis } from "../../Apis/productApis.js";
 import {
   requestPending,
   productfetchSuccess,
-  productfetchBySlug,
   requestFail,
 } from "./productSlice.js";
 

@@ -1,13 +1,13 @@
 import React from "react";
 import CartProductTable from "../../component/CartProductTable/CartProductTable";
-import DefaultLayout from "../../component/layout/DafaultLayout";
+import DafaultLayout from "../../component/layout/DafaultLayout";
 
 const CartviewproductDisplay = () => {
   return (
-    <DefaultLayout>
-      hello there this is product display
+    <DafaultLayout>
+      hello there this is cart display
       <CartProductTable />
-    </DefaultLayout>
+    </DafaultLayout>
   );
 };
 

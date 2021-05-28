@@ -8,7 +8,8 @@ import PrivateRoute from "./component/layout/private-route/PrivateRoute";
 import ProductDisplay from "./page/product/ProductDisplay";
 import ViewProductListTable from "./component/viewproductListTable/viewProductListTable";
 import CartviewproductDisplay from "./page/Cartviewproduct/CartviewproductDisplay";
-
+import ViewProductDisplay from "./page/selectedviewproduct/ViewProductDisplay";
+import "./App.css";
 function App() {
   return (
     <div className="App">
@@ -22,7 +23,7 @@ function App() {
             <ProductDisplay />
           </Route>
           <Route exact path="/Products/:slug">
-            <ViewProductListTable />
+            <ViewProductDisplay />
           </Route>
 
           <Route exact path="/CreateLogin">

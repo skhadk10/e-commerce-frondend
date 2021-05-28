@@ -28,7 +28,7 @@ const Header = () => {
             </li>
             <li>
               <Link to="/cart">
-                <i class="fas fa-shopping-cart"></i>{" "}
+                <i class="fas fa-shopping-cart"></i>
               </Link>
             </li>
             <li>
