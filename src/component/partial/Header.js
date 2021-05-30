@@ -8,7 +8,9 @@ const Header = () => {
     <Navbar bg="success" variant="light">
       <Navbar.Brand href="#home">Clothes stores</Navbar.Brand>
       <Nav className="mr-auto">
-        <Nav.Link to="#home">Home</Nav.Link>
+        <Nav.Link to="#home">
+          <Link to="/Products">Home </Link>
+        </Nav.Link>
         <Nav.Link to="#category">Category</Nav.Link>
         <Nav.Link to="">Product</Nav.Link>
         <Nav.Link to="#abou">About Us</Nav.Link>
@@ -18,14 +20,12 @@ const Header = () => {
         <div className="rightnavbar">
           <ul>
             <li>
-              <Link to=""></Link>
+              <Link to="">SignIn</Link>
             </li>
             <li>
-              <Link to="/Createlogin">Create Account</Link>
+              <Link to="/Createlogin">signUp</Link>
             </li>
-            <li>
-              <Link to="/Products">product </Link>
-            </li>
+
             <li>
               <Link to="/cart">
                 <i class="fas fa-shopping-cart"></i>

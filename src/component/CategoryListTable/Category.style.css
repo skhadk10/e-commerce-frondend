@@ -1,0 +1,15 @@
+.mid-nav {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+}
+
+.mid-nav li {
+  color: black;
+  text-decoration: none;
+  padding-top: 5px;
+  padding-left: 20px;
+}

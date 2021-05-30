@@ -10,6 +10,8 @@ import ViewProductListTable from "./component/viewproductListTable/viewProductLi
 import CartviewproductDisplay from "./page/Cartviewproduct/CartviewproductDisplay";
 import ViewProductDisplay from "./page/selectedviewproduct/ViewProductDisplay";
 import "./App.css";
+import CategoryDisplay from "./page/category/CategoryDisplay";
+import CategoryProductDisplay from "./page/category/CategoryProductDisplay";
 function App() {
   return (
     <div className="App">
@@ -22,6 +24,11 @@ function App() {
           <Route exact path="/Products">
             <ProductDisplay />
           </Route>
+
+          <Route exact path="/Category/:id">
+            <CategoryProductDisplay />
+          </Route>
+
           <Route exact path="/Products/:slug">
             <ViewProductDisplay />
           </Route>
