@@ -11,9 +11,9 @@ export const sendLogin = (FormData) => async (dispatch) => {
     dispatch(requestPending());
     const result = await ClientloginAPI(FormData);
 
-    // const { accessJWT, refreshJWT } = result;
-    // accessJWT && sessionStorage.setItem("accessJWT", accessJWT);
-    // refreshJWT && localStorage.setItem("ourEcommerceRJWT", refreshJWT);
+    const { accessJWT, refreshJWT } = result;
+    accessJWT && sessionStorage.setItem("accessJWT", accessJWT);
+    refreshJWT && localStorage.setItem("ourEcommerceRJWT", refreshJWT);
 
     dispatch(loginSuccess(result));
   } catch (error) {

@@ -3,7 +3,7 @@ import { getProductByCategory } from "../../Apis/CategoryProductApis .js";
 
 import {
   categoryfetchSuccess,
-  categoryfetchSuccessById,
+  ProductFetchByCategoryId,
   requestFail,
   requestPending,
 } from "./CategorySlice.js";
@@ -28,8 +28,8 @@ export const fetchProductByCatId = (_id) => async (dispatch) => {
     dispatch(requestPending());
     const result = await getProductByCategory(_id);
 
-    console.log("from  category action with result", result);
-    dispatch(categoryfetchSuccessById(result));
+    console.log("from  category product action with result", result);
+    dispatch(ProductFetchByCategoryId(result));
   } catch (error) {
     const err = {
       status: "error",

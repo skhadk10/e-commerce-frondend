@@ -15,14 +15,16 @@ const CartProductTable = () => {
   const [QuantityChanges, setQuantityChanges] = useState(cartList.qtyselected);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const data = localStorage.getItem("item");
-  //   !cartList && cartList.push(data);
-  // }, [cartList]);
-
+  useEffect(() => {
+    !cartList && 
+    (cartList.push( localStorage.getItem("listItem")));
+ 
+  }, [cartList]);
+  
   console.log("from add to cart", cartList);
   console.log(localStorage.getItem("item"));
   const handleOnquantityChanges = (listItem, qtyselected) => {
+    
     dispatch(addtoCart(listItem, qtyselected));
   };
 
@@ -63,7 +65,7 @@ const CartProductTable = () => {
                       Quantity
                       <input
                         value={QuantityChanges}
-                        placeholder={row.qtyselected}
+                      
                         name="Quantity"
                         onChange={(e) => {
                           handleOnquantityChanges(row, +e.target.value);

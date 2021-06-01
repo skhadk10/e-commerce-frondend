@@ -14,7 +14,7 @@ export const addtoCart = (itemlist, qtyselected) => (dispatch) => {
 
     dispatch(addToCartSuccess(newItem));
     console.log("from action of cart", addToCartSuccess(newItem));
-    newItem && localStorage.setItem("item", JSON.stringify(newItem));
+    newItem && localStorage.setItem("newItem", JSON.stringify(newItem));
   } catch (error) {
     const err = {
       status: "error",

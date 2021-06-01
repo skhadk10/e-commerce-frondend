@@ -25,7 +25,7 @@ function App() {
             <ProductDisplay />
           </Route>
 
-          <Route exact path="/Category/:id">
+          <Route exact path="/Category/:_id">
             <CategoryProductDisplay />
           </Route>
 

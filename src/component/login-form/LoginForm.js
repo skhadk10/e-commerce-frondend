@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Button, Col, Form, Row, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,16 +11,16 @@ const initialState = {
   password: "1236",
 };
 const LoginForm = () => {
-  // const history = useHistory();
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const { isLoading, loginResponse } = useSelector((state) => state.Login);
   const [login, setLogin] = useState(initialState);
 
-  // const token = sessionStorage.getItem("accessJWT");
-  // useEffect(() => {
-  //   token && history.push("/dashboard");
-  // }, [loginResponse]);
+  const token = sessionStorage.getItem("accessJWT");
+  useEffect(() => {
+    token && history.push("/Products");
+  }, [history, loginResponse, token]);
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     console.log({ name, value });

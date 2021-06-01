@@ -21,6 +21,7 @@ const ViewProductListTable = () => {
   const dispatch = useDispatch();
 
   let { slug } = useParams();
+  console.log("from slug",slug)
   useEffect(() => {
     dispatch(fetchProductBySLug(slug));
   }, [dispatch, slug]);

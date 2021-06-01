@@ -17,9 +17,11 @@ const CategorySlice = createSlice({
       state.isLoading = false;
       state.catDisplayList = payload.result || [];
     },
-    categoryfetchSuccessById: (state, { payload }) => {
+    ProductFetchByCategoryId: (state, { payload }) => {
+      console.log("from catproduct slice", payload);
       state.isLoading = false;
       state.catDisplayListById = payload.result || [];
+      
     },
 
     requestFail: (state, { payload }) => {
@@ -33,7 +35,7 @@ const { reducer, actions } = CategorySlice;
 export const {
   requestPending,
   categoryfetchSuccess,
-  categoryfetchSuccessById,
+  ProductFetchByCategoryId,
   requestFail,
 } = actions;
 export default reducer;

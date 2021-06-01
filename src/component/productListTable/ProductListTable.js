@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Alert, Button, Card, Spinner } from "react-bootstrap";
+import { Alert, Button, Card, Col, Image, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { fetchProduct } from "../../page/product/productAction";
 
@@ -28,9 +28,11 @@ const ProductListTable = () => {
       {proDisplayList?.map((itm, i) => {
         return (
           <Card style={{ width: "18rem" }} key={i}>
+           <Col xs={6} md={4}>
             <Link to={`/Products/${itm.slug}`}>
-              <Card.Img variant="top" src={itm.images[0]} />
+              <Image src={itm.images[0]} rounded />
             </Link>
+            </Col>
             <Card.Body>
               <Card.Title>
                 {itm.status ? (
@@ -42,6 +44,7 @@ const ProductListTable = () => {
               <Card.Title>{itm.name}</Card.Title>
               <Card.Title>{itm.price}</Card.Title>
               <Card.Text>{itm.description}</Card.Text>
+              <Card.Text>{itm.saleEndDate}</Card.Text>
               <Card></Card>
             </Card.Body>
           </Card>
