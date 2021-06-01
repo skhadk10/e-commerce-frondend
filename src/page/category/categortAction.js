@@ -1,5 +1,5 @@
 import { fetchAcategoryApis } from "../../Apis/CategoryApis.js";
-import { fetchAProductByCatIdApis } from "../../Apis/CategoryProductApis .js";
+import { getProductByCategory } from "../../Apis/CategoryProductApis .js";
 
 import {
   categoryfetchSuccess,
@@ -23,9 +23,10 @@ export const fetchCategory = () => async (dispatch) => {
   }
 };
 export const fetchProductByCatId = (_id) => async (dispatch) => {
+  console.log(_id);
   try {
     dispatch(requestPending());
-    const result = await fetchAProductByCatIdApis(_id);
+    const result = await getProductByCategory(_id);
 
     console.log("from  category action with result", result);
     dispatch(categoryfetchSuccessById(result));

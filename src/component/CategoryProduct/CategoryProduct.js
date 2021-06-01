@@ -6,7 +6,8 @@ import { fetchProductByCatId } from "../../page/category/categortAction";
 const CategoryProduct = () => {
   const { catDisplayListById } = useSelector((state) => state.categoryList);
   const dispatch = useDispatch();
-  let { _id } = useParams;
+  let { _id } = useParams();
+  console.log(_id);
   useEffect(() => {
     dispatch(fetchProductByCatId(_id));
   }, [dispatch, _id]);
