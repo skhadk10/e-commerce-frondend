@@ -6,7 +6,7 @@ const initialState = {
   message: "",
 };
 const CartviewproductSlice = createSlice({
-  name: "cartprodDisplay",
+  name: "cartListItem",
   initialState,
   reducers: {
     requestPending: (state) => {
@@ -28,6 +28,14 @@ const CartviewproductSlice = createSlice({
       }
       console.log("from SLice hai", itemexist);
     },
+    deleteCartSuccess: (state, { payload }) => {
+      state.isLoading = false;
+      // check if item we geting is not equal to payload then it will show empty
+      state.cartList= state.cartList?.filter(
+        (item) => item._id !== payload._id
+      );
+    
+    },
     requestFail: (state, { payload }) => {
       state.isLoading = false;
       state.status = payload.status;
@@ -38,7 +46,7 @@ const CartviewproductSlice = createSlice({
 const { reducer, actions } = CartviewproductSlice;
 export const {
   requestPending,
-
+  deleteCartSuccess,
   addToCartSuccess,
   requestFail,
 } = actions;

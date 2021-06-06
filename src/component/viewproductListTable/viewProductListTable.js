@@ -27,6 +27,7 @@ const ViewProductListTable = () => {
   }, [dispatch, slug]);
 
   const handleOnClick = (itemlist, qtyselected) => {
+    
     dispatch(addtoCart(itemlist, qtyselected));
   };
   const handleOnChange = (e) => {

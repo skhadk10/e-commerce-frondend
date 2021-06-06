@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Alert, Button, Card, Image, Spinner, Table } from "react-bootstrap";
 import {
   addtoCart,
+  deleteCart,
   fetchProductToCart,
 } from "../../page/Cartviewproduct/CartviewproductAction";
 import { Link } from "react-router-dom";
@@ -14,20 +15,21 @@ const CartProductTable = () => {
   console.log(cartList);
   const [QuantityChanges, setQuantityChanges] = useState(cartList.qtyselected);
   const dispatch = useDispatch();
+// putting data in localstorage of browser
+  const CartItemFromLocalStorage = localStorage.getItem("cartListItem") ? (JSON.parse(localStorage.getItem("cartListItem"))): [];
 
   useEffect(() => {
-    !cartList && 
-    (cartList.push( localStorage.getItem("listItem")));
- 
-  }, [cartList]);
-  
+    !cartList && dispatch(addtoCart(CartItemFromLocalStorage));
+  }, [CartItemFromLocalStorage, cartList, dispatch]);
+
   console.log("from add to cart", cartList);
   console.log(localStorage.getItem("item"));
   const handleOnquantityChanges = (listItem, qtyselected) => {
-    
     dispatch(addtoCart(listItem, qtyselected));
   };
-
+const HandleOndeleteItem= (item)=>{
+  dispatch(deleteCart(item))
+}
   return (
     <div>
       {isLoading && <Spinner variant="primary" animation="border"></Spinner>}
@@ -64,8 +66,7 @@ const CartProductTable = () => {
                     <p>
                       Quantity
                       <input
-                        value={QuantityChanges}
-                      
+                        value={row.qtyselected}
                         name="Quantity"
                         onChange={(e) => {
                           handleOnquantityChanges(row, +e.target.value);
@@ -75,7 +76,7 @@ const CartProductTable = () => {
                   </td>
                   <td>{row.description}</td>
                   <td>
-                    <Button>Delete</Button>
+                    <Button variant="warning"  onClick={() => HandleOndeleteItem(row)}>remove Item</Button>
                   </td>
                 </tr>
               );
