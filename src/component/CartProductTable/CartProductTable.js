@@ -7,37 +7,41 @@ import {
   fetchProductToCart,
 } from "../../page/Cartviewproduct/CartviewproductAction";
 import { Link } from "react-router-dom";
+import {
+  quantitydecrease,
+  quantityincrease,
+} from "../../page/Cartviewproduct/CartviewproductSlice";
 
 const CartProductTable = () => {
   const { isLoading, status, message, cartList } = useSelector(
     (state) => state.cartListItem
   );
-  console.log(cartList);
+
   const [qtyselected, setQtyselected] = useState(1);
-  
- 
+
   const dispatch = useDispatch();
-// putting data in localstorage of browser
-  const CartItemFromLocalStorage = localStorage.getItem("cartListItem") ? (JSON.parse(localStorage.getItem("cartListItem"))): [];
+  // putting data in localstorage of browser
+  const CartItemFromLocalStorage = localStorage.getItem("cartListItem")
+    ? JSON.parse(localStorage.getItem("cartListItem"))
+    : [];
 
   useEffect(() => {
     !cartList && dispatch(addtoCart(CartItemFromLocalStorage));
   }, [CartItemFromLocalStorage, cartList, dispatch]);
 
-  console.log("from add to cart", cartList);
-  console.log(localStorage.getItem("item"));
   const handleOnquantityChanges = (listItem, qtyselected) => {
     dispatch(addtoCart(listItem, qtyselected));
   };
-const HandleOndeleteItem= (item)=>{
-  dispatch(deleteCart(item))
-}
-const handleOnMinus= ()=>{
- setQtyselected(qtyselected-1)
-}
-const handleOnAdd= ()=>{
-  setQtyselected(qtyselected+1)
-}
+  const HandleOndeleteItem = (item) => {
+    dispatch(deleteCart(item));
+  };
+
+  // this will count all the price of product
+  const totalprice = cartList.reduce(
+    (subttl, item) => subttl + item.price * item.qtyselected,
+    0
+  );
+
   return (
     <div>
       {isLoading && <Spinner variant="primary" animation="border"></Spinner>}
@@ -57,7 +61,7 @@ const handleOnAdd= ()=>{
               <th>Name</th>
               <th>Price</th>
               <th>Quantity</th>
-              <th>Discription</th>
+              <th>ItemTotal</th>
             </tr>
           </thead>
           <tbody>
@@ -66,32 +70,48 @@ const handleOnAdd= ()=>{
                 <tr key={row._id}>
                   <td>{i + 1}</td>
                   <Link to={`/Products/${row.slug}`}>
-                    <Image src={row.images[0]} />
+                    <Image src={row?.images[0]} />
                   </Link>
                   <td>{row.name}</td>
                   <td>{row.price}</td>
                   <td>
                     <p>
-                      Quantity: <Link onClick={()=>{handleOnMinus()}}><i class="fas fa-minus"></i>
-                 </Link>
+                      Quantity:
+                      <i
+                        onClick={() => dispatch(quantitydecrease(row._id))}
+                        class="fas fa-minus"
+                      ></i>
                       <input
                         value={row.qtyselected}
                         name="Quantity"
                         onChange={(e) => {
-                          handleOnquantityChanges(row, setQtyselected(+e.target.value));
+                          handleOnquantityChanges(
+                            row,
+                            setQtyselected(+e.target.value)
+                          );
                         }}
-                      /> <Link onClick={()=>{handleOnAdd()}}><i class="fas fa-plus"></i>
-                      </Link>
+                      />{" "}
+                      <i
+                        onClick={() => dispatch(quantityincrease(row._id))}
+                        class="fas fa-plus"
+                      ></i>
                     </p>
                   </td>
-                  <td>{row.description}</td>
+                  <td>{row.price * row.qtyselected}</td>
                   <td>
-                    <Button variant="warning"  onClick={() => HandleOndeleteItem(row)}>remove Item</Button>
+                    <Button
+                      variant="warning"
+                      onClick={() => HandleOndeleteItem(row)}
+                    >
+                      remove Item
+                    </Button>
                   </td>
                 </tr>
               );
             })}
           </tbody>
+          total price of cart = {totalprice}
+          <Button>Checkout</Button>
         </Table>
       ) : (
         <Link to="/Products">

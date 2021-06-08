@@ -26,16 +26,36 @@ const CartviewproductSlice = createSlice({
       } else {
         state.cartList.push(payload);
       }
-      console.log("from SLice hai", itemexist);
     },
+    quantityincrease: (state, { payload }) => {
+      console.log("fromcart new Array", payload);
+      state.isLoading = false;
+      const newArray = state.cartList?.map((item) => {
+        if (item._id === payload) {
+          item.qtyselected++;
+        }
+        return item;
+      });
+    },
+    quantitydecrease: (state, { payload }) => {
+      state.isLoading = false;
+      const newArray = state.cartList?.map((item) => {
+        if (item._id === payload) {
+          item.qtyselected--;
+        }
+        return item;
+      });
+      // state.cartList = newArray;
+    },
+
     deleteCartSuccess: (state, { payload }) => {
       state.isLoading = false;
       // check if item we geting is not equal to payload then it will show empty
-      state.cartList= state.cartList?.filter(
+      state.cartList = state.cartList?.filter(
         (item) => item._id !== payload._id
       );
-    
     },
+
     requestFail: (state, { payload }) => {
       state.isLoading = false;
       state.status = payload.status;
@@ -47,6 +67,8 @@ const { reducer, actions } = CartviewproductSlice;
 export const {
   requestPending,
   deleteCartSuccess,
+  quantitydecrease,
+  quantityincrease,
   addToCartSuccess,
   requestFail,
 } = actions;

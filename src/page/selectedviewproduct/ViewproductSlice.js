@@ -17,6 +17,7 @@ const viewproductSlice = createSlice({
       state.isLoading = false;
       state.selectedproDisplayList = payload.product || [];
     },
+
     requestFail: (state, { payload }) => {
       state.isLoading = false;
       state.status = payload.status;

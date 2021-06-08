@@ -12,38 +12,35 @@ import { Link, useParams } from "react-router-dom";
 import { fetchProductBySLug } from "../../page/selectedviewproduct/ViewproductAction.js";
 import { addtoCart } from "../../page/Cartviewproduct/CartviewproductAction";
 import "./ViewProduct.css";
+import {
+  quantityincrease,
+  quantitydecrease,
+} from "../../page/Cartviewproduct/CartviewproductSlice.js";
 const ViewProductListTable = () => {
   const { isLoading, status, message, selectedproDisplayList } = useSelector(
     (state) => state.selecteddisplayProduct
   );
+
   const [qtyselected, setqtyselected] = useState(1);
   const [controlQuantity, setcontrolQuantity] = useState(false);
   const dispatch = useDispatch();
 
   let { slug } = useParams();
-  console.log("from slug",slug)
+
   useEffect(() => {
     dispatch(fetchProductBySLug(slug));
   }, [dispatch, slug]);
 
   const handleOnClick = (itemlist, qtyselected) => {
-    
     dispatch(addtoCart(itemlist, qtyselected));
   };
   const handleOnChange = (e) => {
     setcontrolQuantity("false");
     const { value } = e.target;
-    console.log(value);
+
     setqtyselected(+value);
   };
-  const handleOnMinus=()=>{
-    setqtyselected(qtyselected-1)
-   
-  }
-  const handleOnAdd=()=>{
-    setqtyselected(qtyselected+1)
-   
-  }
+
   // for how many qty stock are there checking
   if (qtyselected > selectedproDisplayList[0]?.qty) {
     setcontrolQuantity(true);
@@ -89,16 +86,25 @@ const ViewProductListTable = () => {
               <tr>
                 <p>
                   Quantity:
-                  <Link onClick={()=>{handleOnMinus()}}><i class="fas fa-minus"></i>
-                 </Link>
-                  
+                  <Link
+                    onClick={() => {
+                      quantitydecrease(item._id);
+                    }}
+                  >
+                    <i class="fas fa-minus"></i>
+                  </Link>
                   <input
                     type="form"
                     name="quantity"
                     onChange={handleOnChange}
                     value={controlQuantity === true ? "0" : qtyselected}
-                  ></input> 
-                  <Link onClick={()=>{handleOnAdd()}}><i class="fas fa-plus"></i>
+                  ></input>
+                  <Link
+                    onClick={() => {
+                      quantityincrease(item._id);
+                    }}
+                  >
+                    <i class="fas fa-plus"></i>
                   </Link>
                 </p>
               </tr>
