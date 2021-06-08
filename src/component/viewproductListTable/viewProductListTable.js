@@ -36,7 +36,14 @@ const ViewProductListTable = () => {
     console.log(value);
     setqtyselected(+value);
   };
-
+  const handleOnMinus=()=>{
+    setqtyselected(qtyselected-1)
+   
+  }
+  const handleOnAdd=()=>{
+    setqtyselected(qtyselected+1)
+   
+  }
   // for how many qty stock are there checking
   if (qtyselected > selectedproDisplayList[0]?.qty) {
     setcontrolQuantity(true);
@@ -82,12 +89,17 @@ const ViewProductListTable = () => {
               <tr>
                 <p>
                   Quantity:
+                  <Link onClick={()=>{handleOnMinus()}}><i class="fas fa-minus"></i>
+                 </Link>
+                  
                   <input
                     type="form"
                     name="quantity"
                     onChange={handleOnChange}
                     value={controlQuantity === true ? "0" : qtyselected}
-                  ></input>
+                  ></input> 
+                  <Link onClick={()=>{handleOnAdd()}}><i class="fas fa-plus"></i>
+                  </Link>
                 </p>
               </tr>
               <Button onClick={() => handleOnClick(item, qtyselected)}>

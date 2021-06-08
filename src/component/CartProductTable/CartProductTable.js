@@ -13,7 +13,9 @@ const CartProductTable = () => {
     (state) => state.cartListItem
   );
   console.log(cartList);
-  const [QuantityChanges, setQuantityChanges] = useState(cartList.qtyselected);
+  const [qtyselected, setQtyselected] = useState(1);
+  
+ 
   const dispatch = useDispatch();
 // putting data in localstorage of browser
   const CartItemFromLocalStorage = localStorage.getItem("cartListItem") ? (JSON.parse(localStorage.getItem("cartListItem"))): [];
@@ -29,6 +31,12 @@ const CartProductTable = () => {
   };
 const HandleOndeleteItem= (item)=>{
   dispatch(deleteCart(item))
+}
+const handleOnMinus= ()=>{
+ setQtyselected(qtyselected-1)
+}
+const handleOnAdd= ()=>{
+  setQtyselected(qtyselected+1)
 }
   return (
     <div>
@@ -64,14 +72,16 @@ const HandleOndeleteItem= (item)=>{
                   <td>{row.price}</td>
                   <td>
                     <p>
-                      Quantity
+                      Quantity: <Link onClick={()=>{handleOnMinus()}}><i class="fas fa-minus"></i>
+                 </Link>
                       <input
                         value={row.qtyselected}
                         name="Quantity"
                         onChange={(e) => {
-                          handleOnquantityChanges(row, +e.target.value);
+                          handleOnquantityChanges(row, setQtyselected(+e.target.value));
                         }}
-                      />
+                      /> <Link onClick={()=>{handleOnAdd()}}><i class="fas fa-plus"></i>
+                      </Link>
                     </p>
                   </td>
                   <td>{row.description}</td>

@@ -1,9 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 
 import "./header.styles.css";
+import { LogOut } from "../../page/login/loginAction";
+import { useDispatch, useSelector } from "react-redux";
 const Header = () => {
+  const dispatch = useDispatch()
+
+  const history = useHistory()
+
+  const {loginResponse} = useSelector(state => state.Login)
+  const {cartList} = useSelector(state => state.cartListItem)
+
+  const handleOnLogOut=()=>{
+    dispatch(LogOut(loginResponse?.result))
+    history.push("/")
+  }
+
+  const totalQty=()=>{
+    let itemcount=0
+  cartList.forEach(item => {
+    itemcount= itemcount +item.qtyselected
+  });
+  return itemcount
+  }
   return (
     <Navbar bg="success" variant="light">
       <Navbar.Brand href="#home">Clothes stores</Navbar.Brand>
@@ -28,12 +49,12 @@ const Header = () => {
 
             <li>
               <Link to="/cart">
-                <i class="fas fa-shopping-cart"></i> 
+                <i class="fas fa-shopping-cart">{totalQty()}</i> 
               </Link>
             </li>
             <li>
-              <Link to="/">
-                <i className="fas fa-user primary"></i>
+              <Link onClick={()=>{handleOnLogOut()}}>
+                logOut
               </Link>
             </li>
           </ul>

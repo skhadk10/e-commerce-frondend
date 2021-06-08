@@ -8,6 +8,9 @@ const ProductListTable = () => {
   const { isLoading, status, message, proDisplayList } = useSelector(
     (state) => state.displayProduct
   );
+  // const { status, message } = useSelector(
+  //   (state) => state.login
+  // );
   console.log(proDisplayList);
 
   const dispatch = useDispatch();

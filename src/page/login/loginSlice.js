@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLoading: false,
   loginResponse: {},
+  isAuthorised:false,
+  message2:""
 };
 const loginSlice = createSlice({
   name: "login",
@@ -15,6 +17,17 @@ const loginSlice = createSlice({
       state.isLoading = false;
       state.loginResponse = payload || {};
     },
+    logOutSuccess: (state, { payload }) => {
+      state.isLoading = false;
+     state.isAuthorised= true
+    },
+    
+    updateLogin: (state, { payload }) => {
+      state.isLoading = false;
+     state.isAuthorised= false
+     state.loginResponse=payload || {}
+    },
+    
     requestFail: (state, { payload }) => {
       state.isLoading = false;
       state.loginResponse = payload || {};
@@ -22,5 +35,5 @@ const loginSlice = createSlice({
   },
 });
 const { reducer, actions } = loginSlice;
-export const { requestPending, loginSuccess, requestFail } = actions;
+export const { requestPending, loginSuccess,logOutSuccess,updateLogin, requestFail } = actions;
 export default reducer;
