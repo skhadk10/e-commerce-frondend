@@ -9,7 +9,7 @@ const PrivateRoute = ({ children, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
-      isAuthorised ? (
+        isAuthorised ? (
           children
         ) : (
           <Redirect to={{ pathname: "/signIn", state: { from: location } }} />

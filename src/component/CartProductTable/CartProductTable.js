@@ -27,7 +27,7 @@ const CartProductTable = () => {
 
   useEffect(() => {
     !cartList && dispatch(addtoCart(CartItemFromLocalStorage));
-  }, [CartItemFromLocalStorage, cartList, dispatch]);
+  }, [cartList]);
 
   const handleOnquantityChanges = (listItem, qtyselected) => {
     dispatch(addtoCart(listItem, qtyselected));
@@ -69,10 +69,17 @@ const CartProductTable = () => {
               return (
                 <tr key={row._id}>
                   <td>{i + 1}</td>
-                  <td> <Link to={`/Products/${row.slug}`}>
-                    <Image src={row?.images[0]} width="100px" height="109px" />
-                  </Link>  </td>
-                 
+                  <td>
+                    {" "}
+                    <Link to={`/Products/${row.slug}`}>
+                      <Image
+                        src={row?.images[0]}
+                        width="100px"
+                        height="109px"
+                      />
+                    </Link>{" "}
+                  </td>
+
                   <td>{row.name}</td>
                   <td>{row.price}</td>
                   <td>

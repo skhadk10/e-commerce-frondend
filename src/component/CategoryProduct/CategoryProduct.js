@@ -3,26 +3,31 @@ import { Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import "./Categoryproduct.css"
+import "./Categoryproduct.css";
 import { fetchProductByCatId } from "../../page/category/categortAction";
 // import { useDispatch } from "react-router-dom";
 const CategoryProduct = () => {
   const { catDisplayListById } = useSelector((state) => state.categoryList);
-  console.log("from category display by id",catDisplayListById);
+  console.log("from category display by id", catDisplayListById);
   const dispatch = useDispatch();
   let { _id } = useParams();
   console.log(_id);
   useEffect(() => {
     dispatch(fetchProductByCatId(_id));
-  }, [dispatch, _id]);
+  }, [_id]);
   return (
     <div className="categoryproductlist">
-        {catDisplayListById?.map((item, i) => {
+      {catDisplayListById?.map((item, i) => {
         return (
-      
-            <div  style={{ width: "18rem" }} key={i}>
-            <div><img  variant="top" src={item.images[0]} width="250px" height="300px" /></div>
-            
+          <div style={{ width: "18rem" }} key={i}>
+            <div>
+              <img
+                variant="top"
+                src={item.images[0]}
+                width="250px"
+                height="300px"
+              />
+            </div>
 
             <div>
               <div>
@@ -45,14 +50,12 @@ const CategoryProduct = () => {
                   </i>
                 )}
               </tr>
-            <Link to={`/Products/${item.slug}`}> <Button >
-                view Product
-              </Button>
-            </Link>
-             
+              <Link to={`/Productss/${item.slug}`}>
+                {" "}
+                <Button>view Product</Button>
+              </Link>
             </div>
           </div>
-  
         );
       })}
     </div>

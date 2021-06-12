@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Alert, Button, Col, Form, Row, Spinner } from "react-bootstrap";
-import { useHistory,useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./loginForm.style.css";
-import {sendLogin} from '../../page/login/loginAction.js'
-import {userAutoLogin} from '../../page/login/loginAction'
-
+import { sendLogin } from "../../page/login/loginAction.js";
+import { userAutoLogin } from "../../page/login/loginAction";
 
 const initialState = {
   email: "rickeykhd@gmail.com",
@@ -15,15 +14,17 @@ const LoginForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const { isLoading, loginResponse,isAuthorised } = useSelector((state) => state.Login);
+  const { isLoading, loginResponse, isAuthorised } = useSelector(
+    (state) => state.Login
+  );
   const [login, setLogin] = useState(initialState);
 
   const location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
   useEffect(() => {
-     isAuthorised && history.replace(from)
-     !isAuthorised && dispatch(userAutoLogin());
-  }, [dispatch, from, history, isAuthorised]);
+    isAuthorised && history.replace(from);
+    !isAuthorised && dispatch(userAutoLogin());
+  }, [isAuthorised]);
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     console.log({ name, value });
@@ -36,7 +37,7 @@ const LoginForm = () => {
     if (!login.email || !login.password) {
       alert("plz fill up all the input field");
     }
-    dispatch( sendLogin(login));
+    dispatch(sendLogin(login));
   };
   return (
     <div className="loginpage" onSubmit={handleOnSubmit}>
@@ -82,7 +83,6 @@ const LoginForm = () => {
               Forget password?
             </a>
           </Col>
-         
         </Row>
       </Form>
     </div>

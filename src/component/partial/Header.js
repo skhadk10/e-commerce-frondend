@@ -16,10 +16,12 @@ const Header = () => {
 
   const location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
+
   useEffect(() => {
-    isAuthorised && history.replace(from);
+    // isAuthorised && history.replace(from);
     !isAuthorised && dispatch(userAutoLogin());
-  }, [dispatch, from, history, isAuthorised]);
+  }, [isAuthorised]);
+
   const handleOnLogOut = () => {
     console.log(loginResponse.user);
     dispatch(LogOut(loginResponse?.user));
@@ -33,11 +35,9 @@ const Header = () => {
     return itemcount;
   };
   const handleOnSearch = (e) => {
+    const { name, value } = e.target;
 
-    const { name,value } = e.target;
-    
-    setSearchterm({ ...searchterm, [name]:value });
-
+    setSearchterm({ ...searchterm, [name]: value });
   };
   const handleOnSubmit = (e) => {
     e.preventDefault();

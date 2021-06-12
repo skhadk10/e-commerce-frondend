@@ -10,17 +10,19 @@ import { ClientloginAPI } from "../../Apis/loginApis.js";
 import { LogOutApi } from "../../Apis/LogOut.js";
 import { tokenAPI } from "../../Apis/tokenAPi.js";
 
-
 export const sendLogin = (FormData) => async (dispatch) => {
   try {
     dispatch(requestPending());
     const result = await ClientloginAPI(FormData);
-
+    console.log("result from sentlogin actionlogin", result);
     const { accessJWT, refreshJWT } = result;
+    console.log(accessJWT, refreshJWT, "..............");
     accessJWT && sessionStorage.setItem("accessJWT", accessJWT);
     refreshJWT && localStorage.setItem("ourEcommerceRJWT", refreshJWT);
 
-    dispatch(loginSuccess(result));
+    result.status === "success"
+      ? dispatch(loginSuccess(result))
+      : dispatch(requestFail(result));
   } catch (error) {
     const err = {
       status: "error",
@@ -34,9 +36,9 @@ export const LogOut = (_id) => async (dispatch) => {
   try {
     dispatch(requestPending());
 
-   sessionStorage.removeItem("accessJWT");
-   localStorage.removeItem("ourEcommerceRJWT");
-    LogOutApi(_id)
+    sessionStorage.removeItem("accessJWT");
+    localStorage.removeItem("ourEcommerceRJWT");
+    LogOutApi(_id);
     dispatch(logOutSuccess());
   } catch (error) {
     const err = {
@@ -48,10 +50,10 @@ export const LogOut = (_id) => async (dispatch) => {
 };
 
 export const userAutoLogin = () => async (dispatch) => {
-  console.log("from userAuto login");
+  // getting token from browser
   const accessJWT = sessionStorage.getItem("accessJWT");
   const refreshJWT = localStorage.getItem("ourEcommerceRJWT");
-
+  // storing the accesstoken in payload
   accessJWT && dispatch(updateLogin());
 
   if (!refreshJWT) {

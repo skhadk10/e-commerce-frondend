@@ -18,19 +18,15 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <PrivateRoute path="/Dashboard">
-            <CreateLogin />
-          </PrivateRoute>
-
-          <Route exact path="/Products">
+          {/* <Route exact path="/Products">
             <ProductDisplay />
-          </Route>
+          </Route> */}
 
           <Route exact path="/Category/:_id">
             <CategoryProductDisplay />
           </Route>
 
-          <Route exact path="/Products/:slug">
+          <Route exact path="/Productss/:slug">
             <ViewProductDisplay />
           </Route>
 
@@ -40,9 +36,9 @@ function App() {
           <Route exact path="/cart">
             <CartviewproductDisplay />
           </Route>
-          <Route exact path="/profile">
+          <PrivateRoute exact path="/profile">
             <Profile />
-          </Route>
+          </PrivateRoute>
 
           <Route exact path="/signIn">
             <Login />

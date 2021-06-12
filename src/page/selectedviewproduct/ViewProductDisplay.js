@@ -5,7 +5,6 @@ import ViewProductListTable from "../../component/viewproductListTable/viewProdu
 const ViewProductDisplay = () => {
   return (
     <DafaultLayout>
-      hello there this is product display
       <ViewProductListTable />
     </DafaultLayout>
   );
