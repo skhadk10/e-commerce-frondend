@@ -2,4 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 300px;
+}
+.img {
+  float: left;
+  width:  500px;
+  height: 500px;
+  border: 1px solid black fixed;
+  background-size: cover;
 }

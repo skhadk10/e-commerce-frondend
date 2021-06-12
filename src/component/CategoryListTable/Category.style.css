@@ -6,7 +6,9 @@
   align-items: center;
   background-color: green;
 }
-
+ul.listitem{
+  list-style-type: none;
+}
 .mid-nav li {
   color: black;
   text-decoration: none;

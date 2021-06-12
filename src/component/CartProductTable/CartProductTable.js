@@ -53,10 +53,10 @@ const CartProductTable = () => {
       )}
 
       {cartList.length ? (
-        <Table striped bordered hover>
+        <table>
           <thead>
             <tr>
-              <th>#</th>
+              <th>S.N</th>
               <th>Image</th>
               <th>Name</th>
               <th>Price</th>
@@ -69,9 +69,10 @@ const CartProductTable = () => {
               return (
                 <tr key={row._id}>
                   <td>{i + 1}</td>
-                  <Link to={`/Products/${row.slug}`}>
-                    <Image src={row?.images[0]} />
-                  </Link>
+                  <td> <Link to={`/Products/${row.slug}`}>
+                    <Image src={row?.images[0]} width="100px" height="109px" />
+                  </Link>  </td>
+                 
                   <td>{row.name}</td>
                   <td>{row.price}</td>
                   <td>
@@ -90,7 +91,7 @@ const CartProductTable = () => {
                             setQtyselected(+e.target.value)
                           );
                         }}
-                      />{" "}
+                      />
                       <i
                         onClick={() => dispatch(quantityincrease(row._id))}
                         class="fas fa-plus"
@@ -112,7 +113,7 @@ const CartProductTable = () => {
           </tbody>
           total price of cart = {totalprice}
           <Button>Checkout</Button>
-        </Table>
+        </table>
       ) : (
         <Link to="/Products">
           <Button>Go to product</Button>

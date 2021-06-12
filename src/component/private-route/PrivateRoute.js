@@ -3,16 +3,16 @@ import { Route, Redirect, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 const PrivateRoute = ({ children, ...rest }) => {
   const location = useLocation();
-  const { isAuthorised } = useSelector((state) => state.login);
+  const { isAuthorised } = useSelector((state) => state.Login);
 
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        isAuthorised ? (
+      isAuthorised ? (
           children
         ) : (
-          <Redirect to={{ pathname: "/", state: { from: location } }} />
+          <Redirect to={{ pathname: "/signIn", state: { from: location } }} />
         )
       }
     />

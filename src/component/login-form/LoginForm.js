@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Alert, Button, Col, Form, Row, Spinner } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useHistory,useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./loginForm.style.css";
 import {sendLogin} from '../../page/login/loginAction.js'
+import {userAutoLogin} from '../../page/login/loginAction'
 
 
 const initialState = {
@@ -14,13 +15,15 @@ const LoginForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const { isLoading, loginResponse } = useSelector((state) => state.Login);
+  const { isLoading, loginResponse,isAuthorised } = useSelector((state) => state.Login);
   const [login, setLogin] = useState(initialState);
 
-  const token = sessionStorage.getItem("accessJWT");
+  const location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
   useEffect(() => {
-    token && history.push("/Products");
-  }, [history, loginResponse, token]);
+     isAuthorised && history.replace(from)
+     !isAuthorised && dispatch(userAutoLogin());
+  }, [dispatch, from, history, isAuthorised]);
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     console.log({ name, value });

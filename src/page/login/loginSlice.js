@@ -15,16 +15,18 @@ const loginSlice = createSlice({
     },
     loginSuccess: (state, { payload }) => {
       state.isLoading = false;
+      state.isAuthorised= true
       state.loginResponse = payload || {};
     },
     logOutSuccess: (state, { payload }) => {
       state.isLoading = false;
-     state.isAuthorised= true
+     state.isAuthorised= false
+     state.loginResponse = payload
     },
     
     updateLogin: (state, { payload }) => {
       state.isLoading = false;
-     state.isAuthorised= false
+     state.isAuthorised= true
      state.loginResponse=payload || {}
     },
     

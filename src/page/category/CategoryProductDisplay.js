@@ -4,6 +4,7 @@ import DefaultLayout from '../../component/layout/DafaultLayout'
 const CategoryProductDisplay = () => {
   return (
     <DefaultLayout>
+  
       <CategoryProduct />
     </DefaultLayout>
   );

@@ -12,6 +12,7 @@ import ViewProductDisplay from "./page/selectedviewproduct/ViewProductDisplay";
 import "./App.css";
 import CategoryDisplay from "./page/category/CategoryDisplay";
 import CategoryProductDisplay from "./page/category/CategoryProductDisplay";
+import Profile from "./page/profile/Profile";
 function App() {
   return (
     <div className="App">
@@ -39,9 +40,15 @@ function App() {
           <Route exact path="/cart">
             <CartviewproductDisplay />
           </Route>
-          
-          <Route exact path="/">
+          <Route exact path="/profile">
+            <Profile />
+          </Route>
+
+          <Route exact path="/signIn">
             <Login />
+          </Route>
+          <Route exact path="*">
+            <ProductDisplay />
           </Route>
         </Switch>
       </Router>

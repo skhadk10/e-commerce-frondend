@@ -5,6 +5,7 @@ import {
   Button,
   ButtonGroup,
   Card,
+  Container,
   Image,
   Spinner,
 } from "react-bootstrap";
@@ -12,14 +13,12 @@ import { Link, useParams } from "react-router-dom";
 import { fetchProductBySLug } from "../../page/selectedviewproduct/ViewproductAction.js";
 import { addtoCart } from "../../page/Cartviewproduct/CartviewproductAction";
 import "./ViewProduct.css";
-import {
-  quantityincrease,
-  quantitydecrease,
-} from "../../page/Cartviewproduct/CartviewproductSlice.js";
+
 const ViewProductListTable = () => {
   const { isLoading, status, message, selectedproDisplayList } = useSelector(
     (state) => state.selecteddisplayProduct
   );
+ 
 
   const [qtyselected, setqtyselected] = useState(1);
   const [controlQuantity, setcontrolQuantity] = useState(false);
@@ -55,10 +54,14 @@ const ViewProductListTable = () => {
           {message}
         </Alert>
       )}
-      {selectedproDisplayList?.map((item, i) => {
+    
+    {selectedproDisplayList?.map((item, i) => {
         return (
-          <div className="productdetail" style={{ width: "18rem" }} key={i}>
-            <img variant="top" src={item.images[0]} />
+         <Container>
+           
+            <div className="productdetail" style={{ width: "18rem" }} key={i}>
+  
+            <img className="img" variant="top" src={item.images[0]} />
 
             <div>
               <div>
@@ -68,14 +71,14 @@ const ViewProductListTable = () => {
                   <i className="fas fa-times-circle text-danger"></i>
                 )}
               </div>
-              <tr>{item.name}</tr>
+              <tr className="text-center">{item.name}</tr>
               <tr>Total price:${item.price}</tr>
               <tr>{item.description}</tr>
 
               <tr>
                 {item.qty > 0 ? (
                   <i className="fas fa-check-circle text-success">
-                    we have {item.qty} left on stock
+                    we have {item.qty-qtyselected} left on stock
                   </i>
                 ) : (
                   <i className="fas fa-times-circle text-danger">
@@ -86,26 +89,14 @@ const ViewProductListTable = () => {
               <tr>
                 <p>
                   Quantity:
-                  <Link
-                    onClick={() => {
-                      quantitydecrease(item._id);
-                    }}
-                  >
-                    <i class="fas fa-minus"></i>
-                  </Link>
+                  
                   <input
                     type="form"
                     name="quantity"
                     onChange={handleOnChange}
                     value={controlQuantity === true ? "0" : qtyselected}
                   ></input>
-                  <Link
-                    onClick={() => {
-                      quantityincrease(item._id);
-                    }}
-                  >
-                    <i class="fas fa-plus"></i>
-                  </Link>
+                 
                 </p>
               </tr>
               <Button onClick={() => handleOnClick(item, qtyselected)}>
@@ -113,6 +104,7 @@ const ViewProductListTable = () => {
               </Button>
             </div>
           </div>
+         </Container>
         );
       })}
     </div>

@@ -23,7 +23,7 @@ export const fetchCategory = () => async (dispatch) => {
   }
 };
 export const fetchProductByCatId = (_id) => async (dispatch) => {
-  console.log(_id);
+  console.log("from cat action for id",_id);
   try {
     dispatch(requestPending());
     const result = await getProductByCategory(_id);
@@ -38,3 +38,4 @@ export const fetchProductByCatId = (_id) => async (dispatch) => {
     dispatch(requestFail(err));
   }
 };
+

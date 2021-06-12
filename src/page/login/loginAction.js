@@ -30,13 +30,14 @@ export const sendLogin = (FormData) => async (dispatch) => {
   }
 };
 export const LogOut = (_id) => async (dispatch) => {
+  console.log(_id);
   try {
     dispatch(requestPending());
 
-    sessionStorage.removeItem("accessJWT");
+   sessionStorage.removeItem("accessJWT");
    localStorage.removeItem("ourEcommerceRJWT");
-    const result= await LogOutApi(_id)
-    dispatch(logOutSuccess(result));
+    LogOutApi(_id)
+    dispatch(logOutSuccess());
   } catch (error) {
     const err = {
       status: "error",

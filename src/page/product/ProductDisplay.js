@@ -4,7 +4,7 @@ import ProductListTable from "../../component/productListTable/ProductListTable"
 const ProductDisplay = () => {
   return (
     <DefaultLayout>
-      hello there this is product display
+    
       <ProductListTable />
     </DefaultLayout>
   );

@@ -20,7 +20,7 @@ const CategoryListTable = () => {
     <div className="mid-nav">
       {catDisplayList?.map((itm, i) => {
         return (
-          <ul key={i}>
+          <ul  className="listitem"key={i}>
             <Link to={`/Category/${itm._id}`}>
               <li>{itm.name}</li>
             </Link>
