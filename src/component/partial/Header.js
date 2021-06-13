@@ -14,12 +14,14 @@ const Header = () => {
   const { loginResponse, isAuthorised } = useSelector((state) => state.Login);
   const { cartList } = useSelector((state) => state.cartListItem);
 
-  const location = useLocation();
-  let { from } = location.state || { from: { pathname: "/" } };
+  // const location = useLocation();
+  // let { from } = location.state || { from: { pathname: "/" } };
 
   useEffect(() => {
     // isAuthorised && history.replace(from);
-    !isAuthorised && dispatch(userAutoLogin());
+    if (!isAuthorised && sessionStorage.getItem("accessJWT")) {
+      dispatch(userAutoLogin());
+    }
   }, [isAuthorised]);
 
   const handleOnLogOut = () => {
