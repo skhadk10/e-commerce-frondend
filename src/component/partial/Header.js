@@ -19,8 +19,13 @@ const Header = () => {
 
   useEffect(() => {
     // isAuthorised && history.replace(from);
+<<<<<<< HEAD
     if(sessionStorage.getItem("accessJWT") && !isAuthorised){
  dispatch(userAutoLogin())
+=======
+    if (!isAuthorised && sessionStorage.getItem("accessJWT")) {
+      dispatch(userAutoLogin());
+>>>>>>> 3a3ee04fd054906f22a9a122f87f85117b8c117e
     }
   }, [isAuthorised]);
 

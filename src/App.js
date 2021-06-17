@@ -12,7 +12,7 @@ import ViewProductDisplay from "./page/selectedviewproduct/ViewProductDisplay";
 import "./App.css";
 import CategoryDisplay from "./page/category/CategoryDisplay";
 import CategoryProductDisplay from "./page/category/CategoryProductDisplay";
-import Profile from "./page/profile/Profile";
+import Profile from "./page/profile/ProfileDisplay";
 function App() {
   return (
     <div className="App">

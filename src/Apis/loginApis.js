@@ -14,3 +14,14 @@ export const ClientloginAPI = (formDt) => {
     }
   });
 };
+export const userProfileAPi = (email) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { data } = await axios.post(CLApi + "/" + email);
+
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
