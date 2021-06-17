@@ -4,10 +4,12 @@ import {
   requestFail,
   logOutSuccess,
   updateLogin,
+  userProfile,
 } from "./loginSlice.js";
 
 import { ClientloginAPI } from "../../Apis/loginApis.js";
 import { LogOutApi } from "../../Apis/LogOut.js";
+import { getUserAPI } from "../../Apis/userProfileApis.js";
 import { tokenAPI } from "../../Apis/tokenAPi.js";
 
 export const sendLogin = (FormData) => async (dispatch) => {
@@ -57,7 +59,7 @@ export const userAutoLogin = () => async (dispatch) => {
   accessJWT && dispatch(updateLogin());
 
   if (!refreshJWT) {
-    dispatch(logOutSuccess());
+    return dispatch(logOutSuccess());
   }
 
   if (!accessJWT && refreshJWT) {
@@ -71,6 +73,7 @@ export const userAutoLogin = () => async (dispatch) => {
     }
   }
 
-  // const userDetails = await getUserAPI(refreshJWT);
-  // userDetails._id && dispatch(userProfile(userDetails));
+  const userDetails = await getUserAPI(refreshJWT);
+  console.log("from userProfileAction", userDetails);
+  userDetails._id && dispatch(userProfile(userDetails));
 };

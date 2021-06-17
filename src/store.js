@@ -5,6 +5,7 @@ import ProductReducer from "../src/page/product/productSlice";
 import viewproductSlice from "../src/page/selectedviewproduct/ViewproductSlice";
 import CartProductSlice from "../src/page/Cartviewproduct/CartviewproductSlice";
 import categorySlice from "../src/page/category/CategorySlice";
+import userProfile from "../src/page/profile/ProfileSlice";
 const store = configureStore({
   reducer: {
     Login: loginReducer,
@@ -13,6 +14,7 @@ const store = configureStore({
     selecteddisplayProduct: viewproductSlice,
     cartListItem: CartProductSlice,
     categoryList: categorySlice,
+    profile: userProfile,
   },
 });
 export default store;

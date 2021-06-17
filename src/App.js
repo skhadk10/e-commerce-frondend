@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./page/login/Login";
 import CreateLogin from "./page/create-login/CreateLogin.js";
-import PrivateRoute from "./component/layout/private-route/PrivateRoute";
+import PrivateRoute from "./component/private-route/PrivateRoute";
 import ProductDisplay from "./page/product/ProductDisplay";
 import ViewProductListTable from "./component/viewproductListTable/viewProductListTable";
 import CartviewproductDisplay from "./page/Cartviewproduct/CartviewproductDisplay";
@@ -18,9 +18,9 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          {/* <Route exact path="/Products">
+          <Route exact path="/Products">
             <ProductDisplay />
-          </Route> */}
+          </Route>
 
           <Route exact path="/Category/:_id">
             <CategoryProductDisplay />

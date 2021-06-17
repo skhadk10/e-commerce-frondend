@@ -73,13 +73,13 @@ const ViewProductListTable = () => {
                 <tr>{item.description}</tr>
 
                 <tr>
-                  {item.qty > 0 ? (
+                  {item.qty > qtyselected  ? (
                     <i className="fas fa-check-circle text-success">
-                      we have {item.qty - qtyselected} left on stock
+                      we have {item.qty - qtyselected } left on stock
                     </i>
-                  ) : (
+                  ) : (  
                     <i className="fas fa-times-circle text-danger">
-                      out of stock
+                      {item.qty - qtyselected} out of stock
                     </i>
                   )}
                 </tr>

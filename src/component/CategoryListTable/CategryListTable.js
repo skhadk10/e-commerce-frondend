@@ -8,7 +8,7 @@ import "./Category.style.css";
 const CategoryListTable = () => {
   const { catDisplayList } = useSelector((state) => state.categoryList);
 
-  console.log("from category list", catDisplayList);
+  // console.log("from category list", catDisplayList);
 
   const dispatch = useDispatch();
 

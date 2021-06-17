@@ -4,7 +4,9 @@ const initialState = {
   isLoading: false,
   loginResponse: {},
   isAuthorised: false,
-  message2: "",
+  user:{},
+  otp:{}
+
 };
 const loginSlice = createSlice({
   name: "login",
@@ -21,7 +23,7 @@ const loginSlice = createSlice({
     logOutSuccess: (state, { payload }) => {
       state.isLoading = false;
       state.isAuthorised = false;
-      state.loginResponse = payload;
+    
     },
 
     updateLogin: (state, { payload }) => {
@@ -29,6 +31,16 @@ const loginSlice = createSlice({
       state.isAuthorised = true;
       state.loginResponse = payload || {};
     },
+    userProfile: (state, { payload }) => {
+      state.isLoading = false;
+      
+      state.user = payload || {};
+    },
+    // OneTimePasswordSuccess: (state, { payload }) => {
+    //   state.isLoading = false;
+      
+    //   state.otp = payload || {};
+    // },
 
     requestFail: (state, { payload }) => {
       state.isLoading = false;
@@ -44,5 +56,6 @@ export const {
   logOutSuccess,
   updateLogin,
   requestFail,
+  userProfile,
 } = actions;
 export default reducer;

@@ -11,19 +11,21 @@ const Header = () => {
 
   const history = useHistory();
 
-  const { loginResponse, isAuthorised } = useSelector((state) => state.Login);
+  const { loginResponse, isAuthorised,user } = useSelector((state) => state.Login);
   const { cartList } = useSelector((state) => state.cartListItem);
 
-  const location = useLocation();
-  let { from } = location.state || { from: { pathname: "/" } };
+  // const location = useLocation();
+  // let { from } = location.state || { from: { pathname: "/" } };
 
   useEffect(() => {
     // isAuthorised && history.replace(from);
-    !isAuthorised && dispatch(userAutoLogin());
+    if(sessionStorage.getItem("accessJWT") && !isAuthorised){
+ dispatch(userAutoLogin())
+    }
   }, [isAuthorised]);
 
   const handleOnLogOut = () => {
-    console.log(loginResponse.user);
+    console.log("from header logout ",loginResponse?.user);
     dispatch(LogOut(loginResponse?.user));
     history.push("/");
   };

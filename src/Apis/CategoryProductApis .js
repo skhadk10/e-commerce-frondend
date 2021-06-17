@@ -8,7 +8,7 @@ export const getProductByCategory = (_id) => {
   return new Promise(async (resolve, reject) => {
     try {
       const { data } = await axios.get(catFetch + "/" + _id);
-      console.log("from category API", data);
+
 
       resolve(data);
     } catch (error) {
