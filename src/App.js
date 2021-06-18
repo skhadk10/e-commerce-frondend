@@ -12,7 +12,8 @@ import ViewProductDisplay from "./page/selectedviewproduct/ViewProductDisplay";
 import "./App.css";
 import CategoryDisplay from "./page/category/CategoryDisplay";
 import CategoryProductDisplay from "./page/category/CategoryProductDisplay";
-import Profile from "./page/profile/ProfileDisplay";
+import Profile from "./page/profile/Profile";
+import CheckOut from "./page/CheckOut/CheckOut";
 function App() {
   return (
     <div className="App">
@@ -38,6 +39,9 @@ function App() {
           </Route>
           <PrivateRoute exact path="/profile">
             <Profile />
+          </PrivateRoute>
+          <PrivateRoute exact path="/checkout">
+            <CheckOut />
           </PrivateRoute>
 
           <Route exact path="/signIn">

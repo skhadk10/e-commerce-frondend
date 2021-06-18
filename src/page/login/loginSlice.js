@@ -4,9 +4,8 @@ const initialState = {
   isLoading: false,
   loginResponse: {},
   isAuthorised: false,
-  user:{},
-  otp:{}
-
+  user: {},
+  otp: {},
 };
 const loginSlice = createSlice({
   name: "login",
@@ -23,7 +22,6 @@ const loginSlice = createSlice({
     logOutSuccess: (state, { payload }) => {
       state.isLoading = false;
       state.isAuthorised = false;
-    
     },
 
     updateLogin: (state, { payload }) => {
@@ -32,13 +30,14 @@ const loginSlice = createSlice({
       state.loginResponse = payload || {};
     },
     userProfile: (state, { payload }) => {
+      console.log("from sliceuser", payload);
       state.isLoading = false;
-      
-      state.user = payload || {};
+      state.user = payload.user;
+      console.log("from sliceuser", payload.user);
     },
     // OneTimePasswordSuccess: (state, { payload }) => {
     //   state.isLoading = false;
-      
+
     //   state.otp = payload || {};
     // },
 

@@ -75,5 +75,5 @@ export const userAutoLogin = () => async (dispatch) => {
 
   const userDetails = await getUserAPI(refreshJWT);
   console.log("from userProfileAction", userDetails);
-  userDetails._id && dispatch(userProfile(userDetails));
+  userDetails.status === "success" && dispatch(userProfile(userDetails));
 };

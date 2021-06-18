@@ -119,7 +119,9 @@ const CartProductTable = () => {
             })}
           </tbody>
           total price of cart = {totalprice}
-          <Button>Checkout</Button>
+          <Link to="/checkout">
+            <Button>Checkout</Button>{" "}
+          </Link>
         </table>
       ) : (
         <Link to="/Products">

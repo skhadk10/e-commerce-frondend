@@ -11,7 +11,9 @@ const Header = () => {
 
   const history = useHistory();
 
-  const { loginResponse, isAuthorised,user } = useSelector((state) => state.Login);
+  const { loginResponse, isAuthorised, user } = useSelector(
+    (state) => state.Login
+  );
   const { cartList } = useSelector((state) => state.cartListItem);
 
   // const location = useLocation();
@@ -19,18 +21,14 @@ const Header = () => {
 
   useEffect(() => {
     // isAuthorised && history.replace(from);
-<<<<<<< HEAD
-    if(sessionStorage.getItem("accessJWT") && !isAuthorised){
- dispatch(userAutoLogin())
-=======
-    if (!isAuthorised && sessionStorage.getItem("accessJWT")) {
+
+    if (sessionStorage.getItem("accessJWT") && !isAuthorised) {
       dispatch(userAutoLogin());
->>>>>>> 3a3ee04fd054906f22a9a122f87f85117b8c117e
     }
   }, [isAuthorised]);
 
   const handleOnLogOut = () => {
-    console.log("from header logout ",loginResponse?.user);
+    console.log("from header logout ", loginResponse?.user);
     dispatch(LogOut(loginResponse?.user));
     history.push("/");
   };
