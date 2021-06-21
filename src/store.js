@@ -6,14 +6,39 @@ import viewproductSlice from "../src/page/selectedviewproduct/ViewproductSlice";
 import CartProductSlice from "../src/page/Cartviewproduct/CartviewproductSlice";
 import categorySlice from "../src/page/category/CategorySlice";
 
-const store = configureStore({
-  reducer: {
-    Login: loginReducer,
-    newUser: CreateAUserReducer,
-    displayProduct: ProductReducer,
-    selecteddisplayProduct: viewproductSlice,
-    cartListItem: CartProductSlice,
-    categoryList: categorySlice,
-  },
+import { combineReducers } from "redux";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
+const reducers = combineReducers({
+  Login: loginReducer,
+  newUser: CreateAUserReducer,
+  displayProduct: ProductReducer,
+  selecteddisplayProduct: viewproductSlice,
+  cartListItem: CartProductSlice,
+  categoryList: categorySlice,
 });
+
+const persistConfig = {
+  key: "root",
+  storage,
+
+  // blacklist: ['navigation'], // navigation will not be persisted
+  //  whitelist: ['navigation'], // only navigation will be persisted
+};
+
+const persistedReducer = persistReducer(persistConfig, reducers);
+const store = configureStore({
+  reducer: persistedReducer,
+});
+// const store = configureStore({
+//   reducer: {
+// Login: loginReducer,
+// newUser: CreateAUserReducer,
+// displayProduct: ProductReducer,
+// selecteddisplayProduct: viewproductSlice,
+// cartListItem: CartProductSlice,
+// categoryList: categorySlice,
+//   },
+// });
 export default store;

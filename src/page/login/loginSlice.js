@@ -32,6 +32,7 @@ const loginSlice = createSlice({
     userProfile: (state, { payload }) => {
       console.log("from sliceuser", payload);
       state.isLoading = false;
+      state.isAuthorised = true;
       state.user = payload.user;
       console.log("from sliceuser", payload.user);
     },

@@ -1,15 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { Alert, Button, Col, Form, Row, Spinner } from "react-bootstrap";
+import axios from "axios";
+import StripeCheckout from "react-stripe-checkout";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./CheckOut.css";
 import { sendLogin } from "../../page/login/loginAction.js";
 import { CheckOutAction } from "../../page/CheckOut/CheckOutAction";
 
-const initialState = {
-  email: "rickeykhd@gmail.com",
-  password: "1236",
+const product = {
+  cart: [
+    {
+      name: "almond milk",
+      qty: 5,
+      price: 10,
+    },
+    {
+      name: "cow milk",
+      qty: 15,
+      price: 20,
+    },
+  ],
+  total: 20 * 100,
 };
+
+const initialState = {
+  country: "",
+  fName: "",
+  lName: "",
+  streetAddress: "",
+  streetAddress2: "",
+  suburb: "",
+  state: "",
+  postCode: "",
+  email: "",
+  confEmail: "",
+  countryCode: "",
+  phoneNumber: "",
+};
+
 const CheckOut = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -27,6 +56,22 @@ const CheckOut = () => {
     const { name, value } = e.target;
     console.log({ name, value });
     setCheckout({ ...checkout, [name]: value });
+  };
+  const handleOnPayment = async (token) => {
+    const data = {
+      token,
+      product,
+    };
+
+    const result = await axios.post(
+      "http://localhost:5001/api/v1/payment",
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
   };
 
   const handleOnSubmit = (e) => {
@@ -90,18 +135,18 @@ const CheckOut = () => {
             onChange={handleOnChange}
           />
         </Form.Group>
-        <Row>
-          <Col md={6}>
-            <Button variant="primary" type="submit">
-              Submit
+        <div className="container">
+          <StripeCheckout
+            token={handleOnPayment}
+            stripeKey={process.env.REACT_APP_STRIP_KEY}
+            name="Pay by card "
+            amount={product.total}
+          >
+            <Button variant="info" type="submit">
+              Pay now
             </Button>
-          </Col>
-          <Col md={6}>
-            <a className="text center ml-6 " href=" ">
-              Forget password?
-            </a>
-          </Col>
-        </Row>
+          </StripeCheckout>
+        </div>
       </Form>
     </div>
   );
