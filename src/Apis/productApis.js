@@ -7,7 +7,7 @@ export const fetchAProductApis = () => {
   return new Promise(async (resolve, reject) => {
     try {
       const { data } = await axios.get(prodFetch);
-      // console.log("from API", data);
+      console.log("from API", data);
 
       resolve(data);
     } catch (error) {

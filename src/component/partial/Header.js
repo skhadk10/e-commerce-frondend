@@ -48,7 +48,7 @@ const Header = () => {
     e.preventDefault();
   };
   return (
-    <Navbar bg="success" variant="light" onSubmit={handleOnSubmit}>
+    <Navbar style={{backgroundColor: "#053742"}} onSubmit={handleOnSubmit}>
       <Navbar.Brand href="#home">Clothes stores</Navbar.Brand>
       <Nav className="mr-auto">
         <Nav.Link to="#home">

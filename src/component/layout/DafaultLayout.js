@@ -8,10 +8,10 @@ import SideBarNav from "../side-bar/SideBarNav";
 import "./DefaultLayout.css";
 const DafaultLayout = ({ children }) => {
   return (
-    <div>
+    <div style={{ backgroundColor:"#A2DBFA"}}>
       <Header />
       <CategoryDisplay />
-      <div>{children}</div>
+      <div >{children}</div>
       <Footer />
     </div>
   );
